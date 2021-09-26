@@ -2,7 +2,6 @@
 //有n个元素，第i个元素有a[i] b[i] c[i]三个属性，设f(i)表示满足a[j]<=a[i]且b[j]<=b[i]且c[j]<=c[i]且j!=i的j的个数
 //对于d属于[0,n) 求f(i)=d的个数
 //tuple 0->a[i] 1->b[i] 2->c[i] 4->相同元素的个数 5->标号下标
-//需要去重特殊处理
 #include <bits/stdc++.h>
 using namespace std;
 #define lowbit(x) (x & -x)
@@ -32,7 +31,7 @@ void cdq(int l, int r) {
     cdq(l, mid), cdq(mid + 1, r);
     vector<pair<int, int> > v;
     for (int i = l, p = l, q = mid + 1; i <= r; i++) {
-        if (p <= mid && get<1>(a[p]) <= get<1>(a[q]) || q > r) {
+        if (q > r || p <= mid && get<1>(a[p]) <= get<1>(a[q])) {
             T.add(get<2>(a[p]), get<3>(a[p]));
             v.push_back(make_pair(get<2>(a[p]), get<3>(a[p])));
             b[i] = a[p++];
@@ -46,8 +45,7 @@ void cdq(int l, int r) {
 }
 signed main() {
     scanf("%d%d", &n, &k);
-    for (int i = 1; i <= n; i++) 
-		scanf("%d%d%d", &get<0>(b[i]), &get<1>(b[i]), &get<2>(b[i]));
+    for (int i = 1; i <= n; i++) scanf("%d%d%d", &get<0>(b[i]), &get<1>(b[i]), &get<2>(b[i]));
     sort(b + 1, b + 1 + n);
     for (int i = 1, j = i + 1; i <= n; i = j + 1, j = i + 1) {
         while (j <= n && b[i] == b[j]) j++;
@@ -57,8 +55,7 @@ signed main() {
         get<4>(a[tot]) = tot;
     }
     cdq(1, tot);
-    for (int i = 1; i <= tot; i++) 
-		f[ans[get<4>(a[i])] + get<3>(a[i]) - 1] += get<3>(a[i]);
+    for (int i = 1; i <= tot; i++) f[ans[get<4>(a[i])] + get<3>(a[i]) - 1] += get<3>(a[i]);
     for (int i = 0; i < n; i++) printf("%d\n", f[i]);
     return 0;
 }
