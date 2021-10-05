@@ -6,12 +6,13 @@
 //5: 求 x 的前驱(前驱定义为小于 x，且最大的数)
 //6: 求 x 的后继(后继定义为大于 x，且最小的数)
 //L是左边界 R是右边界 左边界需要-1
+//第一次调用会让1成为根
 #include <bits/stdc++.h>
 using namespace std;
 #define maxn 100100 //动态开点的左右范围为1e7，不止4倍空间
-int n, op, x, L = -1e7 - 1, R = 1e7, rt = 1;
+int n, op, x, L = -1e7 - 1, R = 1e7, rt;
 struct segment_tree {
-    int val[maxn << 5], ls[maxn << 5], rs[maxn << 5], cnt = 1;
+    int val[maxn << 5], ls[maxn << 5], rs[maxn << 5], cnt;
     void pushup(int p) {
         val[p] = val[ls[p]] + val[rs[p]];
     }
