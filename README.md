@@ -1,19 +1,6 @@
 ﻿# ICPC-Code-Template-in-Latex
 
-
-创建一个Latex版本的 ACM-ICPC 模板。
-
-本项目主要以github的另一个项目：https://github.com/jasison27/ACM-ICPC-CodeTemplate-Late 为基础，进行了一定程度上的修改于完善：
-
-- 优化了排版
-- 优化了全文的代码显示
-- 支持中文
-- 可以在每一个Subciton/Subsection/Subsubsection后插入`.tex`文件，用来对当前的模板进行说明。
-- 支持subsubsection的建立。
-
 ## 文件结构：
-
-![12](https://raw.githubusercontent.com/Chen-Jr/ICPC-Code-Template-in-Latex/master/%E7%BB%93%E6%9E%84.png)
 
 其中：
 
