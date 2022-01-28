@@ -14,7 +14,7 @@ int bsgs(int a, int b, int p) {
     if (!(a % p) && b) return -1;
     unordered_map<int, int> mp;
     int m = ceil(sqrt(p));
-    for (int i = 0, t = b; i < m; i++) mp[t] = i, t = 1LL * t * a % p;
+    for (int i = 0, t = b; i <= m; i++) mp[t] = i, t = 1LL * t * a % p;
     for (int i = 1, j = qpow(a, m, p), t = j; i <= m; i++) {
         if (mp.count(t)) return i * m - mp[t];
         t = 1LL * t * j % p;
