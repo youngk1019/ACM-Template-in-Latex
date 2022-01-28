@@ -2,12 +2,12 @@
 #include <bits/stdc++.h>
 using namespace std;
 typedef long long ll;
-#define maxn 60
+#define maxm 50
 struct linear_basis {
-    ll a[maxn], temp[maxn];
+    ll a[maxm], temp[maxm];
     bool flag;//是否可以表示0
     void insert(ll x) {
-        for (int i = 50; i >= 0; i--) {
+        for (int i = maxm - 1; i >= 0; i--) {
             if (x & (1LL << i)) {
                 if (!a[i]) return a[i] = x, void();
                 else x ^= a[i];
@@ -16,12 +16,12 @@ struct linear_basis {
         flag = true;
     }
     ll qmax(ll ret = 0) {
-        for (int i = 50; i >= 0; i--)ret = max(ret, ret ^ a[i]);
+        for (int i = maxm - 1; i >= 0; i--)ret = max(ret, ret ^ a[i]);
         return ret;
     }
     ll qmin() {
         if (flag)return 0;
-        for (int i = 0; i <= 50; i++) if (a[i]) return a[i];
+        for (int i = 0; i <= maxm - 1; i++) if (a[i]) return a[i];
     }
     ll query(ll k) {
         ll ret = 0;
@@ -35,6 +35,13 @@ struct linear_basis {
         if (k >= (1LL << cnt)) return -1;
         for (int i = 0; i < cnt; i++) if (k & (1LL << i)) ret ^= temp[i];
         return ret;
+    }
+    //查询是否存在
+    bool count(ll x) {
+        for (int i = maxm - 1; i >= 0; i--) {
+            if (x & (1 << i))x ^= a[i];
+        }
+        return x == 0;
     }
 } T;
 int n;
