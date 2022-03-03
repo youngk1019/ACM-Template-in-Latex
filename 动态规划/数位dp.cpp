@@ -1,4 +1,5 @@
 //Luogu P4127 [AHOI2009]同类分布
+//求出[a,b]中各位数字之和能整除原数的数的个数
 #include<bits/stdc++.h>
 using namespace std;
 typedef long long ll;
