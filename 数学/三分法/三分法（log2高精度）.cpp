@@ -1,5 +1,6 @@
 //Luogu P3382 【模板】三分法
 //找到一个多项式函数的峰值(极大值)，输入为从高到低依次表示该n次函数各项的系数。
+//极大值
 #include <bits/stdc++.h>
 using namespace std;
 #define maxn 20
