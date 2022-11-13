@@ -4,7 +4,7 @@ set cnt=1
 gen.exe > 1.in
 1.exe < 1.in > 1.out
 2.exe < 1.in > 2.out
-echo Cnt:%cnt%
+echo cnt:%cnt%
 fc 1.out 2.out
 set /a cnt=%cnt%+1
 if not errorlevel 1 goto loop
