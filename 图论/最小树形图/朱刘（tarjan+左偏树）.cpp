@@ -1,7 +1,7 @@
 //Luogu P4716 【模板】最小树形图
 //给定包含 n个结点，m条有向边的一个图。试求一棵以结点 r为根的最小树形图，并输出最小树形图每条边的权值之和，如果没有以 r为根的最小树形图，输出 -1
 //最小树形图是以该根向外
-//复杂度O((n+m)logn) 主要开双倍n空间
+//复杂度O((n+m)logn) 注意开双倍n空间
 #include<bits/stdc++.h>
 using namespace std;
 #define maxn 110
