@@ -1,12 +1,15 @@
-template.pdf: template.tex main
-	./main
-	pdflatex template.tex
-	pdflatex template.tex
+.PHONY:clean
 
-template.tex: main
+all: template.tex
+	xelatex template.tex
+	xelatex template.tex
+	find template.* gen | grep -v template.pdf | xargs rm
 
-main: main.cpp
-	cc main.cpp -o main
+template.tex: gen
+
+gen: main.cpp
+	$(CXX) -std=c++11 -O2 $^ -o $@
+	./$@
 
 clean:
-	rm template.* main
+	rm template.* gen
