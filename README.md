@@ -32,12 +32,8 @@ make
 **因为需要支持中文，需要将Windows系统编码改为utf-8**
 
 ```bash
- g++ main.cpp -o gen.exe
- gen.exe
- XeLatex template.tex
- XeLatex template.tex
+make.bat
  ```
- 编译运行`main.cpp`，会生成一份`template.tex`文件，只需要用Latex使用`XeLatex`编译生成pdf文件即可，最终需要编译两次XeLatex
 
 ## 说明：
 
