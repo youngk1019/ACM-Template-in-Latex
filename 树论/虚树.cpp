@@ -1,4 +1,5 @@
 //Luogu P2495 [SDOI2011]消耗战
+// 给一颗树，每条边有不同的代价，给m次询问，每次给出k个点，求使得这个k个点与1号店分割的最小代价
 #include <bits/stdc++.h>
 using namespace std;
 #define maxn 250100
