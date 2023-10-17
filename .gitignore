@@ -1,5 +1,11 @@
+# IDE 日志 缓存
 .idea
 .cache
 .log
 .vscode
 .DS_store
+
+# 编译中间产物
+gen
+gen.exe
+template.*
