@@ -2,14 +2,15 @@
 //给定 n个模式和一个文本串，求有多少个不同的模式串在文本串里出现过
 #include <bits/stdc++.h>
 using namespace std;
-#define maxn 1000100
 struct AC_automation {
-    int trie[maxn][26], val[maxn], fail[maxn], cnt;
-    void insert(char *s) {
-        int len = strlen(s), p = 0;
-        for (int i = 0; i < len; i++) {
-            int x = s[i] - 'a';
-            if (!trie[p][x]) trie[p][x] = ++cnt;
+    vector<array<int, 26>> trie;
+    vector<int> val, fail;
+    AC_automation() { expand(); }
+    void insert(string &str) {
+        int p = 0;
+        for (char &c: str) {
+            int x = c - 'a';
+            if (!trie[p][x]) trie[p][x] = trie.size(), expand();
             p = trie[p][x];
         }
         val[p]++;
@@ -28,25 +29,28 @@ struct AC_automation {
             }
         }
     }
-    int query(char *s) {
-        int len = strlen(s), p = 0, ret = 0;
-        for (int i = 0; i < len; i++) {
-            p = trie[p][s[i] - 'a'];
+    int query(string &str) {
+        int p = 0, ret = 0;
+        for (char &c: str) {
+            p = trie[p][c - 'a'];
             for (int t = p; t && ~val[t]; t = fail[t])ret += val[t], val[t] = -1;
         }
         return ret;
     }
+private:
+    void expand() {
+        trie.emplace_back(), val.emplace_back(), fail.emplace_back();
+    }
 } T;
 int n;
-char s[maxn];
+string str;
 signed main() {
-    scanf("%d", &n);
-    for (int i = 1; i <= n; i++) {
-        scanf("%s", s);
-        T.insert(s);
-    }
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    cin >> n;
+    for (int i = 1; i <= n; i++) cin >> str, T.insert(str);
     T.build();
-    scanf("%s", s);
-    printf("%d\n", T.query(s));
+    cin >> str;
+    cout << T.query(str) << '\n';
     return 0;
 }

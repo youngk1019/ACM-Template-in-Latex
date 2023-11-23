@@ -2,42 +2,40 @@
 //未匹配输出WRONG 第一匹配输出OK 后续匹配输出REPEAT
 #include <bits/stdc++.h>
 using namespace std;
-#define maxn 500100
-#define maxm 100
 struct trie {
-    int trie[maxn][26], cnt, flag[maxn];
-    void insert(char *str) {
-        int len = strlen(str), p = 0;
-        for (int i = 0; i < len; i++) {
-            int x = str[i] - 'a';
-            if (!trie[p][x]) trie[p][x] = ++cnt;
-            p = trie[p][x];
+    vector<array<int, 26> > t;
+    vector<int> flag;
+    trie() { expand(); }
+    void insert(string &str) {
+        int p = 0;
+        for (char &c: str) {
+            int x = c - 'a';
+            if (!t[p][x]) t[p][x] = t.size(), expand();;
+            p = t[p][x];
         }
         flag[p] = 1;
     }
-    int query(char *str) {
-        int len = strlen(str), p = 0;
-        for (int i = 0; i < len; i++) {
-            int x = str[i] - 'a';
-            if (!trie[p][x]) return 0;
-            p = trie[p][x];
+    int query(string &str) {
+        int p = 0;
+        for (char &c: str) {
+            int x = c - 'a';
+            if (!t[p][x]) return 0;
+            p = t[p][x];
         }
         return flag[p] == 1 ? flag[p] = 2, 1 : flag[p];
     }
+private:
+    void expand() { t.emplace_back(), flag.emplace_back(); }
 } T;
 int n, m;
-char str[maxm];
-const char ans[3][10] = {"WRONG", "OK", "REPEAT"};
+string str;
+const string ans[] = {"WRONG", "OK", "REPEAT"};
 signed main() {
-    scanf("%d", &n);
-    for (int i = 1; i <= n; i++) {
-        scanf("%s", str);
-        T.insert(str);
-    }
-    scanf("%d", &m);
-    while (m--) {
-        scanf("%s", str);
-        puts(ans[T.query(str)]);
-    }
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    cin >> n;
+    for (int i = 1; i <= n; i++) cin >> str, T.insert(str);
+    cin >> m;
+    while (m--) cin >> str, cout << ans[T.query(str)] << '\n';
     return 0;
 }
