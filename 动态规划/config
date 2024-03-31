@@ -3,3 +3,4 @@
 <数位dp> <数位dp.cpp>
 <换根dp> <换根dp.cpp>
 <子集枚举dp> <子集枚举dp.cpp>
+<高维前缀和dp> <高维前缀和dp.cpp>
