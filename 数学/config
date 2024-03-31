@@ -12,4 +12,5 @@
 <矩阵> <> <> <矩阵>
 <三分法> <> <> <三分法>
 <Pollard-Rho> <Pollard-Rho.cpp>
-<质数个数> <> <> <质数个数> 
+<质数个数> <> <> <质数个数>
+<Gosper's Hack> <Gosper's Hack.cpp>
